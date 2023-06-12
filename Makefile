@@ -2,6 +2,7 @@
 NIXADDR ?= unset
 NIXPORT ?= 22
 NIXUSER ?= fred
+NIXNAME ?= replica
 
 # SSH options that are used. These aren't meant to be overridden but are
 # reused a lot so we just store them up here.
@@ -53,9 +54,9 @@ vm/copy:
 	rsync -av -e 'ssh $(SSH_OPTIONS) -p$(NIXPORT)' \
 		--exclude='.git/' \
 		--rsync-path="sudo rsync" \
-		$(MAKEFILE_DIR)/configuration.nix $(NIXUSER)@$(NIXADDR):/etc/nixos/
+		$(MAKEFILE_DIR)/ $(NIXUSER)@$(NIXADDR):/nixconfig
 
 vm/switch:
 	ssh $(SSH_OPTIONS) -p$(NIXPORT) $(NIXUSER)@$(NIXADDR) " \
-		nixos-rebuild switch \
+		nixos-rebuild switch --flake \"/nixconfig#${NIXNAME}\" \
 	"

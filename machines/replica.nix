@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ../hardware/vm-aarch64.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
