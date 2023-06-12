@@ -12,7 +12,7 @@
 
   # Networking setup
   networking.hostName = "replica";
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
@@ -20,20 +20,24 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User configuration
+  users.users.root = {
+    initialPassword = "root";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHOncfJWwsXugVSekXQTWouJ8kGkPmfsO92KE2UbGTF"
+    ];
+  };
+
   users.users.fred = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHOncfJWwsXugVSekXQTWouJ8kGkPmfsO92KE2UbGTF"
+    ];
   };
 
-  users.users.root = {
-    initialPassword = "root";
-  };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-  ];
+  # Users in the wheel group don't need a password to sudo
+  security.sudo.wheelNeedsPassword = false;
 
   # OpenSSH configuration
   services.openssh = {
@@ -57,4 +61,9 @@
 
   nix.package = pkgs.nixUnstable;
  	nix.extraOptions = "experimental-features = nix-command flakes";
+
+  # Package installation
+  environment.systemPackages = with pkgs; [
+    wget
+  ];
 }
