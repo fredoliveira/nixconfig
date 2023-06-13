@@ -10,14 +10,14 @@
       replica = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ./machines/replica.nix
+          ./machines/vm-replica.nix
         ];
       };
 
       pitch = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ./machines/pitch.nix
+          ./machines/vm-pitch.nix
         ];
       };
     };
