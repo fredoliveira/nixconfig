@@ -11,12 +11,28 @@
 
   # Package installation
   environment.systemPackages = with pkgs; [
+    gcc
+    gnumake
     git
-    ruby_3_2
+
+    ruby
     nodejs_18
-    postgresql
+    postgresql.lib
     yarn
     mupdf
     vips
+    redis
   ];
+
+  services.postgresql = {
+    enable = true;
+    enableTCPIP = true;
+  };
+
+  services.redis.servers = {
+    pitch = {
+      enable = true;
+      port = 6379;
+    };
+  };
 }
