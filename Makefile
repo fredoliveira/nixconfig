@@ -46,9 +46,14 @@ vm/init:
 vm/configure:
 	NIXUSER=root $(MAKE) vm/copy
 	NIXUSER=root $(MAKE) vm/switch
+	$(MAKE) vm/secrets
 	ssh $(SSH_OPTIONS) -p$(NIXPORT) root@$(NIXADDR) " \
 		reboot; \
 	"
+
+vm/secrets:
+	rsync -av -e 'ssh $(SSH_OPTIONS)' \
+		$(HOME)/.ssh/id* $(NIXUSER)@$(NIXADDR):~/.ssh
 
 vm/copy:
 	rsync -av -e 'ssh $(SSH_OPTIONS) -p$(NIXPORT)' \
