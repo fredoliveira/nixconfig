@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./vm-shared
+    ./vm-shared.nix
     ../hardware/vm-aarch64-fusion.nix
   ];
 
