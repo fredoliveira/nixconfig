@@ -2,7 +2,7 @@
 NIXADDR ?= unset
 NIXPORT ?= 22
 NIXUSER ?= fred
-NIXNAME ?= replica
+NIXNAME ?= pitch
 
 # SSH options that are used. These aren't meant to be overridden but are
 # reused a lot so we just store them up here.
