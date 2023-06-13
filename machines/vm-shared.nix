@@ -40,7 +40,7 @@
 
   users.users.fred = {
     isNormalUser = true;
-    extraGroups = [ "wheel", "docker" ];
+    extraGroups = [ "wheel" "docker" ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHOncfJWwsXugVSekXQTWouJ8kGkPmfsO92KE2UbGTF"
     ];
