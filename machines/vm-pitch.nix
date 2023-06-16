@@ -14,10 +14,12 @@
     gcc
     gnumake
     git
+    vim
 
+    bundix
     ruby
     nodejs_18
-    postgresql.lib
+    postgresql
     yarn
     mupdf
     vips
