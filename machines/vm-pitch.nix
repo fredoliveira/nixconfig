@@ -11,11 +11,6 @@
 
   # Package installation
   environment.systemPackages = with pkgs; [
-    gcc
-    gnumake
-    git
-    vim
-
     bundix
     ruby
     nodejs_18
