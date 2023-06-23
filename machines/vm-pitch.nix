@@ -34,7 +34,15 @@
 
   services.postgresql = {
     enable = true;
-    enableTCPIP = true;
+    initialScript = pkgs.writeText "postgresql initscript" ''
+      CREATE ROLE pitch WITH LOGIN PASSWORD 'pitch' CREATEDB;
+      CREATE DATABASE pitch-development;
+    '';
+    ensureUsers = [{
+      name = "fred";
+      ensureClauses.superuser = true;
+      ensureClauses.login = true;
+    }];
   };
 
   services.redis.servers = {
